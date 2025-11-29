@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Islem Ridene - Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,15 +14,18 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --primary-color: #14b8a6;
+            --secondary-color: #0d9488;
+            --accent-color: #2dd4bf;
+            --text-dark: #ffffff;
+            --text-light: #e0f2f1;
+            --bg-light: #1a1a1a;
+            --bg-dark: #0a0a0a;
+            --white: #000000;
+            --shadow: 0 10px 25px rgba(20, 184, 166, 0.2);
+            --shadow-lg: 0 20px 50px rgba(20, 184, 166, 0.3);
             --gradient: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            --gradient-dark: linear-gradient(135deg, #0a0a0a, #1a1a1a);
         }
 
         body {
@@ -29,69 +33,125 @@
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
+            background: var(--bg-dark);
         }
 
-        /* Navigation */
+        /* Navigation - AMÉLIORÉE */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(25px);
             z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
+            padding: 1.2rem 0;
+            transition: all 0.4s ease;
+            border-bottom: 2px solid rgba(20, 184, 166, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .navbar.scrolled {
-            box-shadow: var(--shadow);
+            padding: 0.8rem 0;
+            background: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 8px 32px rgba(20, 184, 166, 0.2);
+            border-bottom: 2px solid rgba(20, 184, 166, 0.3);
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 0 3rem;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logo::before {
+            content: "IR";
+            background: var(--gradient);
+            color: #000;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            box-shadow: 0 5px 15px rgba(20, 184, 166, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo:hover::before {
+            transform: rotate(360deg);
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.6);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 3rem;
+            align-items: center;
         }
 
         .nav-link {
             text-decoration: none;
             color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
             position: relative;
+            padding: 0.5rem 0;
+            letter-spacing: 0.5px;
         }
 
         .nav-link:hover {
             color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
-        .nav-link::after {
+        .nav-link::before {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: var(--gradient);
             transition: width 0.3s ease;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(20, 184, 166, 0.5);
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link.active::before {
             width: 100%;
         }
 
@@ -99,25 +159,40 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
         }
 
         .mobile-menu span {
-            width: 25px;
+            width: 28px;
             height: 3px;
-            background: var(--text-dark);
-            margin: 3px 0;
-            transition: 0.3s;
+            background: var(--gradient);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(9px, 9px);
+        }
+
+        .mobile-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(9px, -9px);
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: var(--gradient);
+            background: var(--gradient-dark);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: var(--white);
+            color: #ffffff;
             position: relative;
             overflow: hidden;
         }
@@ -129,61 +204,127 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
-            background-size: cover;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(45, 212, 191, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(20, 184, 166, 0.03) 2px,
+                    rgba(20, 184, 166, 0.03) 4px
+                );
+            pointer-events: none;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 900px;
             padding: 0 2rem;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ffffff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 2rem;
             opacity: 0.9;
             animation: fadeInUp 1s ease 0.2s both;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .hero .description {
             font-size: 1.1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             opacity: 0.8;
             animation: fadeInUp 1s ease 0.4s both;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--white);
-            color: var(--primary-color);
+            padding: 1.2rem 3rem;
+            background: var(--gradient);
+            color: #000000;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease 0.6s both;
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(20, 184, 166, 0.4);
         }
 
         /* Sections */
         .section {
-            padding: 5rem 0;
+            padding: 6rem 0;
+            position: relative;
         }
 
         .section:nth-child(even) {
             background: var(--bg-light);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 0 0 5px 5px;
         }
 
         .container {
@@ -194,22 +335,25 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 3rem;
+            margin-bottom: 4rem;
             color: var(--text-dark);
             position: relative;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 100px;
             height: 4px;
             background: var(--gradient);
             border-radius: 2px;
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.5);
         }
 
         /* About Section */
@@ -226,27 +370,27 @@
         }
 
         .profile-img {
-            width: 250px;
-            height: 250px;
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
             background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            color: var(--white);
+            color: #ffffff;
             margin: 0 auto;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
             position: relative;
             cursor: pointer;
+            border: 5px solid rgba(20, 184, 166, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .profile-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 25px 60px rgba(20, 184, 166, 0.4);
         }
 
         .photo-upload-overlay {
@@ -291,12 +435,20 @@
         }
 
         .skill-tag {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #000000;
+            padding: 0.6rem 1.2rem;
             border-radius: 25px;
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(20, 184, 166, 0.2);
+            cursor: pointer;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4);
         }
 
         /* Projects Section */
@@ -309,7 +461,7 @@
 
         .add-btn {
             background: var(--primary-color);
-            color: var(--white);
+            color: #000000;
             border: none;
             padding: 0.8rem 1.5rem;
             border-radius: 25px;
@@ -334,31 +486,55 @@
         }
 
         .project-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 2rem;
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            border-radius: 20px;
+            padding: 2.5rem;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(20, 184, 166, 0.2);
             position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
         }
 
         .project-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: var(--gradient);
-            border-radius: 15px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
+            color: #000000;
+            font-size: 1.8rem;
             margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px rgba(20, 184, 166, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1) rotate(10deg);
         }
 
         .project-card h3 {
@@ -386,6 +562,7 @@
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
             font-size: 0.8rem;
+            border: 1px solid var(--primary-color);
         }
 
         .project-link {
@@ -402,23 +579,7 @@
         }
 
         .delete-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ef4444;
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 0.8rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .delete-btn {
-            opacity: 1;
+            display: none; /* Masquer complètement le bouton de suppression */
         }
 
         /* Certifications Section */
@@ -430,17 +591,35 @@
         }
 
         .cert-card {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 1.5rem;
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            border-radius: 15px;
+            padding: 2rem;
             box-shadow: var(--shadow);
-            border-left: 4px solid var(--primary-color);
+            border-left: 5px solid var(--primary-color);
             transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .cert-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
         }
 
         .cert-card:hover {
-            transform: translateX(5px);
+            transform: translateX(10px);
+            box-shadow: var(--shadow-lg);
         }
 
         .cert-card h3 {
@@ -479,12 +658,12 @@
         }
 
         .associative-card {
-            background: var(--white);
+            background: #000000;
             border-radius: 15px;
             padding: 2rem;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--primary-color);
             position: relative;
         }
 
@@ -501,7 +680,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+            color: #000000;
             font-size: 1.2rem;
             margin-bottom: 1rem;
         }
@@ -532,10 +711,11 @@
         }
 
         .contact-info {
-            background: var(--white);
+            background: #000000;
             padding: 2rem;
             border-radius: 15px;
             box-shadow: var(--shadow);
+            border: 1px solid var(--primary-color);
         }
 
         .contact-item {
@@ -553,7 +733,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+            color: #000000;
         }
 
         .social-links {
@@ -563,25 +743,46 @@
         }
 
         .social-link {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+            color: #000000;
             text-decoration: none;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(20, 184, 166, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .social-link:hover::before {
+            width: 100%;
+            height: 100%;
         }
 
         .social-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 15px 30px rgba(20, 184, 166, 0.5);
         }
 
         .contact-form {
-            background: var(--white);
+            background: #000000;
             padding: 2rem;
             border-radius: 15px;
             box-shadow: var(--shadow);
@@ -602,10 +803,12 @@
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #e5e7eb;
+            border: 2px solid var(--primary-color);
             border-radius: 10px;
             font-size: 1rem;
             transition: border-color 0.3s ease;
+            background: #1a1a1a;
+            color: var(--text-dark);
         }
 
         .form-group input:focus,
@@ -616,7 +819,7 @@
 
         .submit-btn {
             background: var(--gradient);
-            color: var(--white);
+            color: #000000;
             padding: 1rem 2rem;
             border: none;
             border-radius: 10px;
@@ -634,10 +837,11 @@
 
         /* Footer */
         .footer {
-            background: var(--text-dark);
-            color: var(--white);
+            background: #000000;
+            color: var(--text-dark);
             text-align: center;
             padding: 2rem 0;
+            border-top: 1px solid var(--primary-color);
         }
 
         /* Added Modal Styles */
@@ -654,7 +858,7 @@
         }
 
         .modal-content {
-            background-color: var(--white);
+            background-color: #000000;
             margin: 5% auto;
             padding: 2rem;
             border-radius: 15px;
@@ -664,6 +868,7 @@
             overflow-y: auto;
             position: relative;
             box-shadow: var(--shadow);
+            border: 1px solid var(--primary-color);
         }
 
         .close {
@@ -703,10 +908,12 @@
         .modal .form-group select {
             width: 100%;
             padding: 0.8rem;
-            border: 2px solid #e5e7eb;
+            border: 2px solid var(--primary-color);
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s ease;
+            background: #1a1a1a;
+            color: var(--text-dark);
         }
 
         .modal .form-group input:focus,
@@ -754,7 +961,7 @@
 
         .btn-secondary {
             background: var(--text-light);
-            color: var(--white);
+            color: #000000;
             padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 8px;
@@ -769,7 +976,7 @@
 
         .btn-primary {
             background: var(--primary-color);
-            color: var(--white);
+            color: #000000;
             padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 8px;
@@ -789,13 +996,21 @@
             margin-top: 15px;
         }
         #seeMoreBtn {
-            background: #0073e6;
-            color: white;
+            background: var(--gradient);
+            color: #000000;
             border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
+            padding: 12px 30px;
+            border-radius: 30px;
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(20, 184, 166, 0.3);
         }
+        #seeMoreBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -808,10 +1023,15 @@
             }
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.6s ease;
+            transition: all 0.8s ease;
         }
 
         .fade-in.visible {
@@ -819,14 +1039,77 @@
             transform: translateY(0);
         }
 
+        /* Particules d'arrière-plan */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-100vh) translateX(50px);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
-                display: none;
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s ease;
+                padding: 2rem 0;
+                gap: 2rem;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+                border-top: 2px solid rgba(20, 184, 166, 0.3);
+            }
+
+            .nav-menu.active {
+                left: 0;
             }
 
             .mobile-menu {
                 display: flex;
+            }
+
+            .nav-container {
+                padding: 0 2rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo::before {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
 
             .hero h1 {
@@ -834,28 +1117,21 @@
             }
 
             .hero .subtitle {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .contact-content {
-                grid-template-columns: 1fr;
+            .profile-img {
+                width: 220px;
+                height: 220px;
             }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .certifications-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .associative-grid {
-                grid-template-columns: 1fr;
+            .contact-info {
+                grid-column: 1 / -1;
+                max-width: 100%;
             }
 
             .projects-header {
@@ -869,60 +1145,25 @@
                 width: 95%;
             }
         }
-
-        /* Edit Mode Styles */
-        .edit-mode {
-            position: relative;
-        }
-
-        .edit-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary-color);
-            color: var(--white);
-            border: none;
-            padding: 0.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .edit-mode:hover .edit-btn {
-            opacity: 1;
-        }
-
-        .editable {
-            border: 2px dashed transparent;
-            transition: border-color 0.3s ease;
-        }
-
-        .editable:hover {
-            border-color: var(--primary-color);
-        }
-
-        .editable[contenteditable="true"] {
-            border-color: var(--accent-color);
-            background: rgba(37, 99, 235, 0.05);
-        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Particules d'arrière-plan -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation - AMÉLIORÉE -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo"></div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Accueil</a></li>
+            <div class="logo">Islem Ridene</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Accueil</a></li>
                 <li><a href="#about" class="nav-link">À propos</a></li>
                 <li><a href="#projects" class="nav-link">Projets</a></li>
                 <li><a href="#certifications" class="nav-link">Certifications</a></li>
                 <li><a href="#associative" class="nav-link">Vie Associative</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="mobile-menu">
+            <div class="mobile-menu" id="mobileMenu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -932,13 +1173,11 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content edit-mode">
-            <button class="edit-btn" onclick="toggleEdit(this.parentElement)">✏️</button>
-            <h1 class="editable">Islem Ridene</h1>
-            <p class="subtitle editable">Étudiant en Big Data & Analyse des Données</p>
-            <p class="description editable">
-                Étudiant passionné par la data science, cherchant à mettre en œuvre mes compétences 
-                en Python, SQL et machine learning dans un environnement professionnel stimulant.
+        <div class="hero-content">
+            <h1>Islem Ridene</h1>
+            <p class="subtitle">Étudiant en Big Data & Analyse des Données</p>
+            <p class="description">
+                Étudiant en 3ème année de Licence en Sciences de l'informatique (Big Data & Analyses des Données) à l'ISAMM en codiplômation avec l'ESCT, passionné par la data science et l'IA, cherchant un stage pour mettre en œuvre mes compétences en Python, AI (LLM, machine learning) et data science dans un environnement professionnel stimulant.
             </p>
             <a href="#about" class="cta-button">Découvrir mon profil</a>
         </div>
@@ -950,7 +1189,6 @@
             <h2 class="section-title fade-in">À Propos</h2>
             <div class="about-content fade-in">
                 <div class="about-image">
-                    <!-- Added photo upload functionality -->
                     <div class="profile-img" onclick="document.getElementById('photoUpload').click()">
                         <i class="fas fa-user" id="defaultIcon"></i>
                         <img id="profilePhoto" style="display: none;" alt="Photo de profil">
@@ -961,33 +1199,49 @@
                     </div>
                     <input type="file" id="photoUpload" accept="image/*" style="display: none;">
                 </div>
-                <div class="about-text edit-mode">
-                    <button class="edit-btn" onclick="toggleEdit(this.parentElement)">✏️</button>
-                    <h3 class="editable">Formation & Parcours</h3>
-                    <p class="editable">
+                <div class="about-text">
+                    <h3>Formation & Parcours</h3>
+                    <p>
                         Actuellement en 3ème année de Licence en Sciences de l'informatique (Big Data & Analyses des Données) 
                         à l'Institut Supérieur des Arts Multimédias (ISAMM) en codiplômation avec l'École Supérieure 
-                        de Commerce de Tunis (ESCT).
+                        de Commerce de Tunis (ESCT) (2023-2025).
                     </p>
-                    <p class="editable">
+                    <p>
                         Diplômé du Baccalauréat Mathématiques au Lycée Pilote Bourguiba de Tunis en 2023, 
-                        je me spécialise dans l'analyse de données, le développement web et mobile, 
+                        je me spécialise dans l'analyse de données, l'intelligence artificielle, le développement web et mobile, 
                         ainsi que la résolution de problèmes algorithmiques.
                     </p>
                     
                     <div class="skills">
                         <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
                         <span class="skill-tag">Java</span>
+                        <span class="skill-tag">R</span>
                         <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">LLM</span>
+                        <span class="skill-tag">Langchain</span>
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">Groq</span>
                         <span class="skill-tag">Hadoop</span>
                         <span class="skill-tag">Spark</span>
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">NoSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Neo4j</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">Streamlit</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">React</span>
                         <span class="skill-tag">Firebase</span>
                         <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Android Studio</span>
+                        <span class="skill-tag">Codeforces</span>
                     </div>
                 </div>
             </div>
@@ -999,7 +1253,7 @@
         <div class="container">
             <h2 class="section-title fade-in">Projets & Réalisations</h2>
             <div class="projects-grid fade-in" id="projectsGrid">
-                <!-- Existing projects will be loaded here -->
+                <!-- Projects will be loaded here -->
             </div>
         </div>
     </section>
@@ -1009,68 +1263,112 @@
         <div class="container">
             <div class="projects-header fade-in">
                 <h2 class="section-title" style="margin-bottom: 0;">Certifications</h2>
-                <!-- Updated button text and functionality for certifications -->
             </div>
-            <!-- Added 19 empty certification placeholders -->
             <div class="certifications-grid fade-in" id="certificationsGrid">
                 <div class="cert-card">
-                    <h3>Understanding Artificial Intelligence </h3>
-                    <p class="provider">Datacamp</p>
-                    <a href="./documents/certifications/ai-datacamp.pdf" class="cert-pdf-link" target="_blank">
+                    <h3>Supervised Learning with scikit-learn</h3>
+                    <p class="provider">DataCamp</p>
+                    <a href="./documents/certifications/sup_learning_sklearn.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
                     </a>
                 </div>
-
                 <div class="cert-card">
-                    <h3> Introduction to Artificial Intelligence (AI)</h3>
-                    <p class="provider">Coursera</p>
-                    <a href="./documents/certifications/Understanding Artificial Intelligence.pdf" class="cert-pdf-link" target="_blank">
-                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
-                    </a>
-                </div>
-
-                <div class="cert-card">
-                    <h3>JDBC (guided project)</h3>
-                    <p class="provider">Coursera</p>
-                    <a href="./documents/certifications/Coursera jdbc.pdf" class="cert-pdf-link" target="_blank">
-                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
-                    </a>
-                </div>
-
-                <div class="cert-card">
-                    <h3>Manipulating Data with SQL</h3>
-                    <p class="provider">Coursera</p>
-                    <a href="./documents/certifications/Coursera manipulating data with sql.pdf" class="cert-pdf-link" target="_blank">
-                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
-                    </a>
-                </div>
-
-                <div class="cert-card">
-                    <h3> Create a Python Application using MySQL</h3>
-                    <p class="provider">Coursera</p>
-                    <a href="./documents/certifications/Coursera mysqlpython.pdf" class="cert-pdf-link" target="_blank">
-                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
-                    </a>
-                </div>
-
-                <div class="cert-card">
-                    <h3>Python for Data Analysis: Pandas & NumPy</h3>
-                    <p class="provider">Coursera</p>
-                    <a href="./documents/certifications/Coursera pandas & numpy.pdf" class="cert-pdf-link" target="_blank">
-                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
-                    </a>
-                </div>
-
-                <div class="cert-card hidden-cert">
                     <h3>Python for Data Science, AI & Development</h3>
-                    <p class="provider">Coursera</p>
+                    <p class="provider">IBM - Coursera</p>
                     <a href="./documents/certifications/Coursera_python.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
                     </a>
                 </div>
 
+                <div class="cert-card">
+                    <h3>The Structured Query Language (SQL)</h3>
+                    <p class="provider">University of Colorado Boulder - Coursera</p>
+                    <a href="./documents/certifications/Coursera_SQL.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+
+                <div class="cert-card">
+                    <h3>Developing LLM Applications with LangChain</h3>
+                    <p class="provider">DataCamp</p>
+                    <a href="./documents/certifications/llm_langchain.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+                  <div class="cert-card hidden-cert">
+                    <h3>Data Analysis with Python</h3>
+                    <p class="provider">FreeCodeCamp</p>
+                    <a href="./documents/certifications/data_analysis_freecodecamp.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+                        
+                <div class="cert-card">
+                    <h3>Data Manipulation in SQL</h3>
+                    <p class="provider">DataCamp</p>
+                    <a href="./documents/certifications/Data%20Manipulation%20in%20SQL%20datacamp.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+
+                <div class="cert-card">
+                    <h3>Understanding Machine Learning</h3>
+                    <p class="provider">DataCamp</p>
+                    <a href="./documents/certifications/ml_datacamp.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+
                 <div class="cert-card hidden-cert">
-                    <h3> The Structured Query Language (SQL)</h3>
+                    <h3>Understanding Artificial Intelligence</h3>
+                    <p class="provider">DataCamp</p>
+                    <a href="./documents/certifications/ai-datacamp.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+
+                <div class="cert-card hidden-cert">
+                    <h3>Introduction to Artificial Intelligence (AI)</h3>
+                    <p class="provider">Coursera</p>
+                    <a href="./documents/certifications/Understanding%20Artificial%20Intelligence.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+
+                <div class="cert-card hidden-cert">
+                    <h3>JDBC (guided project)</h3>
+                    <p class="provider">Coursera</p>
+                    <a href="./documents/certifications/Coursera%20jdbc.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+
+                <div class="cert-card hidden-cert">
+                    <h3>Manipulating Data with SQL</h3>
+                    <p class="provider">Coursera</p>
+                    <a href="./documents/certifications/Coursera%20manipulating%20data%20with%20sql.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+
+                <div class="cert-card hidden-cert">
+                    <h3>Create a Python Application using MySQL</h3>
+                    <p class="provider">Coursera</p>
+                    <a href="./documents/certifications/Coursera%20mysqlpython.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+
+                <div class="cert-card hidden-cert">
+                    <h3>Python for Data Analysis: Pandas & NumPy</h3>
+                    <p class="provider">Coursera</p>
+                    <a href="./documents/certifications/Coursera%20pandas%20&%20numpy.pdf" class="cert-pdf-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Voir le certificat PDF
+                    </a>
+                </div>
+
+                <div class="cert-card hidden-cert">
+                    <h3>The Structured Query Language (SQL)</h3>
                     <p class="provider">Coursera</p>
                     <a href="./documents/certifications/Coursera_SQL.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
@@ -1078,7 +1376,7 @@
                 </div>
 
                 <div class="cert-card hidden-cert">
-                    <h3> Understanding Basic SQL Syntax</h3>
+                    <h3>Understanding Basic SQL Syntax</h3>
                     <p class="provider">Coursera</p>
                     <a href="./documents/certifications/coursera_sql_basic_syntax_gp.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
@@ -1088,13 +1386,13 @@
                 <div class="cert-card hidden-cert">
                     <h3>Data Manipulation in SQL</h3>
                     <p class="provider">Datacamp</p>
-                    <a href="./documents/certifications/Data Manipulation in SQL datacamp.pdf" class="cert-pdf-link" target="_blank">
+                    <a href="./documents/certifications/Data%20Manipulation%20in%20SQL%20datacamp.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
                     </a>
                 </div>
 
                 <div class="cert-card hidden-cert">
-                    <h3> Intermediate SQL</h3>
+                    <h3>Intermediate SQL</h3>
                     <p class="provider">Datacamp</p>
                     <a href="./documents/certifications/interm_sql_datacamp.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
@@ -1102,7 +1400,7 @@
                 </div>
 
                 <div class="cert-card hidden-cert">
-                    <h3>Introduction to Chatgpt</h3>
+                    <h3>Introduction to ChatGPT</h3>
                     <p class="provider">Datacamp</p>
                     <a href="./documents/certifications/intro_chatgpt.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
@@ -1111,7 +1409,7 @@
 
                 <div class="cert-card hidden-cert">
                     <h3>Introduction to Python</h3>
-                    <p class="provider">ODatacamp</p>
+                    <p class="provider">Datacamp</p>
                     <a href="./documents/certifications/intro_python_datacamp.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
                     </a>
@@ -1136,7 +1434,7 @@
                 <div class="cert-card hidden-cert">
                     <h3>Problem Solving (Basic)</h3>
                     <p class="provider">HackerRank</p>
-                    <a href="./documents/certifications/problem_solving_basic certificate.pdf" class="cert-pdf-link" target="_blank">
+                    <a href="./documents/certifications/problem_solving_basic%20certificate.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
                     </a>
                 </div>
@@ -1144,7 +1442,7 @@
                 <div class="cert-card hidden-cert">
                     <h3>Python Basic</h3>
                     <p class="provider">HackerRank</p>
-                    <a href="./documents/certifications/python_basic certificate (2).pdf" class="cert-pdf-link" target="_blank">
+                    <a href="./documents/certifications/python_basic%20certificate%20(2).pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
                     </a>
                 </div>
@@ -1152,7 +1450,7 @@
                 <div class="cert-card hidden-cert">
                     <h3>SQL (Basic)</h3>
                     <p class="provider">HackerRank</p>
-                    <a href="./documents/certifications/sql_basic certificate.pdf" class="cert-pdf-link" target="_blank">
+                    <a href="./documents/certifications/sql_basic%20certificate.pdf" class="cert-pdf-link" target="_blank">
                         <i class="fas fa-file-pdf"></i> Voir le certificat PDF
                     </a>
                 </div>
@@ -1170,7 +1468,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Added Vie Associative Section -->
     <section id="associative" class="section">
@@ -1203,10 +1500,8 @@
     <section id="contact" class="section">
         <div class="container">
             <h2 class="section-title fade-in">Contact</h2>
-            <!-- Removed contact form, kept only contact information -->
             <div class="contact-content fade-in">
-                <div class="contact-info edit-mode" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
-                    <button class="edit-btn" onclick="toggleEdit(this.parentElement)">✏️</button>
+                <div class="contact-info" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
                     <h3 style="margin-bottom: 2rem; color: var(--primary-color); text-align: center;">Informations de Contact</h3>
                     
                     <div class="contact-item">
@@ -1215,7 +1510,7 @@
                         </div>
                         <div>
                             <h4>Téléphone</h4>
-                            <p class="editable"> +216 94420273</p>
+                            <p>+216 94420273</p>
                         </div>
                     </div>
 
@@ -1225,7 +1520,7 @@
                         </div>
                         <div>
                             <h4>Email</h4>
-                            <p class="editable">islamriden@gmail.com</p>
+                            <p>islamriden@gmail.com</p>
                         </div>
                     </div>
 
@@ -1235,7 +1530,7 @@
                         </div>
                         <div>
                             <h4>Localisation</h4>
-                            <p class="editable">Tunis, Tunisie</p>
+                            <p>Tunis, Tunisie</p>
                         </div>
                     </div>
 
@@ -1245,7 +1540,7 @@
                         </div>
                         <div>
                             <h4>Langues</h4>
-                            <p class="editable">Arabe (Natif), Français, Anglais, Allemand (Bases)</p>
+                            <p>Arabe (Natif), Français (Techniques), Anglais (Techniques), Allemand (Notions de bases)</p>
                         </div>
                     </div>
 
@@ -1258,6 +1553,9 @@
                         </a>
                         <a href="https://codeforces.com/profile/islamriden" class="social-link" target="_blank">
                             <i class="fas fa-code"></i>
+                        </a>
+                        <a href="https://islem-rd.github.io/Portfolio/" class="social-link" target="_blank">
+                            <i class="fas fa-globe"></i>
                         </a>
                     </div>
                 </div>
@@ -1279,39 +1577,53 @@
         // Initialize default data
         const defaultProjects = [
             {
-                title: "Lecteur de Musique Android",
-                description: "Application Android développée en Java intégrant Firebase et l'API Spotify pour une expérience musicale complète.",
-                tech: ["Java", "Firebase", "Spotify API", "Android"],
-                link: "https://github.com/islem-rd/music-player-android-app",
-                icon: "fas fa-music"
+                title: "RAG Chatbot Application",
+                description: "Une application de chatbot utilisant la Retrieval-Augmented Generation (RAG) qui permet de téléverser des documents (PDF ou TXT) et de poser des questions à leur sujet. L'application utilise l'IA pour fournir des réponses intelligentes basées sur la base de connaissances téléversée, avec FastAPI, Streamlit, LangChain, Groq API et FAISS.",
+                tech: ["FastAPI", "Streamlit", "LangChain", "Groq API", "FAISS", "HuggingFace", "Python"],
+                link: "https://github.com/islem-rd/rag-project",
+                icon: "fas fa-brain"
             },
             {
-                title: "Chatbot avec Gemini API",
-                description: "Chatbot intelligent développé avec HTML, CSS, JavaScript et l'API Gemini pour des interactions naturelles et fluides.",
-                tech: ["HTML", "CSS", "JavaScript", "Gemini API"],
-                link: "https://github.com/islem-rd/chatbot-with-gemini",
+                title: "AI Agent",
+                description: "Une application web qui permet de téléverser des fichiers PDF ou texte pour discuter avec leur contenu. Elle utilise LLMs, LangChain, FastAPI, et React, la base de données cloud et la gestion des entités, formulaires et objets.",
+                tech: ["React", "FastAPI", "LangChain", "LLM", "Cloud Database"],
+                link: "",
                 icon: "fas fa-robot"
             },
             {
-                title: "Assistant de Voyage Cloud",
-                description: "Application web cloud combinant chatbot interactif et carte interactive pour aider les voyageurs, déployée sur Microsoft Azure.",
-                tech: ["Azure", "Web App", "Maps API", "Chatbot"],
-                link: "https://github.com/islem-rd/travel-assistant",
-                icon: "fas fa-plane"
+                title: "Prédiction du Diabète avec SVM",
+                description: "Un projet de machine learning qui prédit le diabète en utilisant la classification par Support Vector Machine (SVM). Ce projet analyse les données sur le diabète, prétraite les caractéristiques, entraîne un modèle et fournit des prédictions pour des cas individuels.",
+                tech: ["Python", "SVM", "scikit-learn", "Machine Learning", "Data Preprocessing"],
+                link: "https://github.com/islem-rd/diabetes_analysis_project",
+                icon: "fas fa-heartbeat"
             },
             {
-                title: "Analyse des Performances Étudiantes",
-                description: "Analyse complète du dataset StudentPerformance avec prétraitement, visualisations et exploration des facteurs socio-économiques.",
-                tech: ["Python", "Data Analysis", "Visualization", "Statistics"],
+                title: "Projet d'Analyse des Données",
+                description: "Une analyse complète du dataset StudentPerformance, incluant le chargement des données, leur prétraitement, une analyse univariée avec des statistiques descriptives et des visualisations, et l'exploration des performances des étudiants en fonction de variables comme le genre, le type de déjeuner et d'autres facteurs socio-économiques.",
+                tech: ["Python", "Machine Learning", "Data Analysis", "Visualization"],
                 link: "https://github.com/islem-rd/datamining-project",
                 icon: "fas fa-chart-bar"
             },
             {
-                title: "Projet d'Analyse en R",
-                description: "Étude statistique approfondie explorant les facteurs influençant la réussite scolaire avec analyses uni-, bi- et multivariées.",
-                tech: ["R", "Statistics", "Data Mining", "Visualization"],
-                link: "https://github.com/islem-rd/R-Project",
-                icon: "fab fa-r-project"
+                title: "Projet Cloud (App Web)",
+                description: "Une application qui aide les voyageurs à chercher leurs destinations en combinant un chatbot interactif et une carte interactive, lancée sur une machine virtuelle dans le cloud (Microsoft Azure).",
+                tech: ["Azure", "Web App", "Maps API", "Chatbot"],
+                link: "https://github.com/islem-rd/travel-assistant",
+                icon: "fas fa-cloud"
+            },
+            {
+                title: "Chatbot avec Gemini API",
+                description: "Un chatbot fait à partir d'une API de Gemini, développé avec HTML, CSS, JavaScript et PHP.",
+                tech: ["HTML", "CSS", "JavaScript", "PHP", "Gemini API"],
+                link: "https://github.com/islem-rd/chatbot-with-gemini",
+                icon: "fas fa-comments"
+            },
+            {
+                title: "Lecteur de Musique (Android)",
+                description: "Une App Android développée en Java intégrant Firebase et l'API Spotify pour une expérience musicale complète.",
+                tech: ["Java", "Firebase", "Spotify API", "Android"],
+                link: "https://github.com/islem-rd/music-player-android-app",
+                icon: "fas fa-music"
             }
         ];
 
@@ -1342,7 +1654,6 @@
                 const projectCard = document.createElement('div');
                 projectCard.className = 'project-card';
                 projectCard.innerHTML = `
-                    <button class="delete-btn" onclick="deleteProject(${index})" title="Supprimer">×</button>
                     <div class="project-icon">
                         <i class="${project.icon}"></i>
                     </div>
@@ -1359,15 +1670,8 @@
             });
         }
 
-        // Delete functions
-        function deleteProject(index) {
-            if (confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) {
-                const projects = JSON.parse(localStorage.getItem('projects')) || defaultProjects;
-                projects.splice(index, 1);
-                localStorage.setItem('projects', JSON.stringify(projects));
-                renderProjects(projects);
-            }
-        }
+        // Delete functions - SUPPRIMÉE
+        // function deleteProject() supprimée
 
         // Photo upload functionality
         document.getElementById('photoUpload').addEventListener('change', function(e) {
@@ -1416,14 +1720,50 @@
             });
         });
 
-        // Navbar scroll effect
+        // Menu mobile toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Active link on scroll
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
         });
 
         // Fade in animation on scroll
@@ -1445,49 +1785,11 @@
         });
 
 
-        // Edit functionality
-        function toggleEdit(element) {
-            const editables = element.querySelectorAll('.editable');
-            const isEditing = editables[0].getAttribute('contenteditable') === 'true';
-            
-            editables.forEach(editable => {
-                if (isEditing) {
-                    editable.setAttribute('contenteditable', 'false');
-                    // Use a more specific key for localStorage to avoid conflicts
-                    const key = `${editable.className.split(' ')[0]}_${Array.from(element.parentElement.children).indexOf(element)}_${editable.tagName}`;
-                    localStorage.setItem(key, editable.innerHTML);
-                } else {
-                    editable.setAttribute('contenteditable', 'true');
-                    editable.focus();
-                }
-            });
-            
-            const btn = element.querySelector('.edit-btn');
-            btn.innerHTML = isEditing ? '✏️' : '💾';
-        }
-
-        // Load saved content from localStorage
-        function loadSavedContent() {
-            document.querySelectorAll('.editable').forEach((editable, index) => {
-                const key = `${editable.className.split(' ')[0]}_${Array.from(editable.parentElement.children).indexOf(editable)}_${editable.tagName}`;
-                const saved = localStorage.getItem(key);
-                if (saved) {
-                    editable.innerHTML = saved;
-                }
-            });
-        }
-
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navMenu = document.querySelector('.nav-menu');
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-        });
-
         // Initialize everything when page loads
         window.addEventListener('load', () => {
             loadData();
             loadProfilePhoto();
-            loadSavedContent();
+            createParticles();
         });
         function toggleCerts() {
             const hiddenCerts = document.querySelectorAll('.hidden-cert');
@@ -1503,6 +1805,21 @@
             }
             });
         }
+        // Créer des particules d'arrière-plan
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
     </script>
 </body>
 </html>
+
